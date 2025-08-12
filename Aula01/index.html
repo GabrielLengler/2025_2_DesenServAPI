@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <div>
+            <h1>Aula01</h1>
+        </div>
+        <div>
+            <p id="pConteudo"></p>
+            <a>Acessar</a>
+        </div>
+    </div>
+
+<hr>
+<input type="number" id="txtNumero" placeholder="Digite um Número"> <br>
+<button onclick="dobrar()">Dobrar</button>
+<p id="pResultado"></p>
+
+<hr>
+<input type="number" id="valor1" placeholder="Valor 1"><br>
+<input type="number" id="valor2" placeholder="Valor 2"><br>
+<button type="button" onclick="somar()">Somar</button>
+<p id="pSoma"></p> 
+
+<script>
+    function dobrar(){
+        numero = document.getElementById("txtNumero").value
+        if( numero.length > 0 ){
+            result = numero * 2
+            document.getElementById("pResultado").innerHTML = result
+        }else{
+            alert("Preencha com um valor numérico!")
+        }
+    }
+
+    function somar(){
+        v1 = document.getElementById("valor1").value
+        v2 = document.getElementById("valor2").value
+        result = parseFloat(v1) + parseFloat(v2)
+        var p = document.getElementById("pSoma")
+
+        if (!isNaN(result)) {
+            p.innerHTML = "Soma: " + result
+            if (result >= 0) {
+                p.style.color = "blue"
+            }
+            else {
+                p.style.color = "red"
+            }
+        }else{
+            alert("Preencha os dois campos com valores numérios!")
+        }
+    }
+
+    document.getElementById("pConteudo").innerHTML = "Olá <i>Pessoal</i>"
+    document.getElementsByTagName("a")[0].setAttribute("href", "https://www.senacrs.com.br")
+</script>
+
+</body>
+</html>
