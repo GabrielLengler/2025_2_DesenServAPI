@@ -71,3 +71,12 @@ function calcularIMC(){
         criarObjeto( valor )
     }
 }
+
+$("#conteudo").css("background", "#f00")
+
+$("#botao").on("click" , function(){
+   // $("#conteudo").fadeToggle(4000)
+   $("#conteudo").fadeout(4000 , function(){
+    $("#conteudo").fadeIn(2000)
+   } )
+} )
