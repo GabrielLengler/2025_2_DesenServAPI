@@ -34,7 +34,7 @@ function validar(){
 
 }
 
-function criarObjeto(){
+function criarObjeto( vPeso ){
     var conteudo = document.getElementById("conteudo")
     var pessoa = {
         nome : "Maria" ,
@@ -60,7 +60,14 @@ function criarObjeto(){
     pessoa.filhos.forEach( filho => {
         txt += "<br>Nome: " + filho.nome + " - Idade: " + filho.idade
     });
-    txt += "<br>IMC: " + pessoa.getIMC( 60 )
+    txt += "<br>IMC: " + pessoa.getIMC( vPeso )
     conteudo.innerHTML = txt
 
+}
+
+function calcularIMC(){
+    const valor = document.getElementById("txtPeso").value
+    if( valor != "" && !isNaN(valor) ){
+        criarObjeto( valor )
+    }
 }
