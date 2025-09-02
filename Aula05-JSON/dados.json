@@ -1,0 +1,13 @@
+{
+    "nome" : "Maria" ,
+    "idade": "27" ,
+    "altura": "1.71" ,
+    "casado": true ,
+    "conjuge": { "nome": "João" , "idade": 29 } ,
+    "filhos" : [
+        { "nome": "Laura" , "idade": 7 } ,
+        { "nome": "Pedro" , "idade": 12 }
+    ] ,
+    "formacoes" : [ "Graduação" , "Mestrado" ] ,
+    "endereco" : null
+}
