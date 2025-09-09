@@ -61,6 +61,19 @@ function buscarProdutos(){
     }
 
 
-    req.open("GET" , "servidor.php" , true )
+    req.open("GET" , "servidor.php?buscar" , true )
     req.send()
+}
+
+function inserirProduto(){
+    const nome = document.getElementById("txtNome").value
+    const preco = document.getElementById("txtPreco").value
+    const req= new XMLHttpRequest()
+    req.onreadystatechange = function(){
+
+    }
+
+    req.open("POST", "servidor.php?inserir", true)
+    req.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" )
+    req.send("name=" + nome + "&price=" + preco)
 }
