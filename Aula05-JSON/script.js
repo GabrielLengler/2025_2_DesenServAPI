@@ -44,6 +44,7 @@ function buscarProdutos(){
             txt += '        <th>Código</th> '
             txt += '        <th>Nome</th> '
             txt += '        <th>Preço</th> '
+            txt += '        <th>Excluir</th> '
             txt += '    </tr> '
             objJSON = JSON.parse( this.responseText )
             const produtos = objJSON.produtos
@@ -52,6 +53,7 @@ function buscarProdutos(){
                 txt += "    <td>" + prod.id + "</td>"
                 txt += "    <td>" + prod.nome + "</td>"
                 txt += "    <td>" + prod.preco + "</td>"
+                txt += "    <td><button onclick='excluir(" + prod.id + ")'> X </button></td>"
                 txt += "</tr>"
             })
             txt += "</table>"
@@ -65,11 +67,30 @@ function buscarProdutos(){
     req.send()
 }
 
+function excluir( idProd ){
+    const req= new XMLHttpRequest()
+    req.onreadystatechange = function(){
+        if( this.readyState == 4 && this.status == 200){
+            buscarProdutos()
+        }
+    }
+    req.open("GET", "servidor.php?excluir&idProduto=" + idProd , true)
+    req.send()
+
+}
+
 function inserirProduto(){
     const nome = document.getElementById("txtNome").value
     const preco = document.getElementById("txtPreco").value
     const req= new XMLHttpRequest()
     req.onreadystatechange = function(){
+        if( this.readyState == 4 && this.status == 200){
+            const json = JSON.parse ( this.responseText )
+            txt = json.resposta
+            if ( json.id ) txt += "\nId gerado: " + json.id
+            alert( txt )
+            buscarProdutos()
+        }
 
     }
 

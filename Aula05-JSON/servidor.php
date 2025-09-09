@@ -25,7 +25,10 @@
 
         $nome = $_POST["name"];
         $preco = $_POST["price"];
+        $preco = str_replace("," , "." , $preco);
+        if( $preco == "" ) $preco = 0.0;
 
+    try{
         $conn = mysqli_connect($local, $user, $password, $banco);
         if ( $conn ){
              $query = "INSERT INTO produto (nome, preco) VALUES ( '$nome' , $preco ) ";
@@ -38,5 +41,21 @@
                 echo '{"resposta" : "Erro ao tentar inserir }';
           }else
               echo '{"resposta" : "Erro ao tentar conectar" }';
+        }catch( \Throwable $th ){
+            echo '{ "resposta" : "Erro ao tentar conectar" }';
+        }
+    }
+
+    if(isset( $_REQUEST['excluir'] ) ){
+
+        $conn = mysqli_connect($local, $user, $password, $banco);
+        if ( $conn ){
+            $idProd = $_GET["idProduto"];
+
+             $query = "DELETE FROM produto WHERE id = $idProd";
+             mysqli_query($conn, $query);
+             mysqli_close($conn);
+             echo '{ "resposta" : "Produto excluído com sucesso!" }';
+          }
 
     }
