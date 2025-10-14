@@ -98,6 +98,22 @@ app.delete( "/product/:idProd" , (req, res, next)=>{
         .catch( next )
 } )
 
+app.delete( "/category/:idCat" , (req, res, next)=>{
+    const id = req.params.idCat
+    conn( "categoria" )
+        .where( "id" , id )
+        .delete()
+        .then( dados => {
+            if( !dados ){
+                return next(errors( 404 , "Erro ao tentar excluir") )
+            }
+            res.status(200).json( {
+                resposta : "Categoria excluida"
+            } )         
+        } )
+        .catch( next )
+} )
+
 
 
 app.listen( PORT , ()=>{
